@@ -1,0 +1,25 @@
+.header {
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10px;
+
+    &__logo {
+        a {
+            font-size: 24px;
+            font-weight: 500;
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+}
+.main {
+    padding: 0 80px;
+}
+.footer {
+    background-color: orange;
+    padding: 15px 10px;
+    text-align: center;
+    color: white;
+}

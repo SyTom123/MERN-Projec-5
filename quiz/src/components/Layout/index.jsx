@@ -1,20 +1,19 @@
-import {Link, Outlet} from 'react-router-dom'
+/* eslint-disable no-unused-vars */
+import { Outlet} from 'react-router-dom';
+import {useSelector} from 'react-redux'
 import "./Layout.scss";
+import Header from './Header';
+import Footer from './Footer';
 const Layout = () => {
+  const authen = useSelector(state => state.authenReducer);
   return (
-    <div>
-        <header className="header">
-            <div className="header__logo">
-                <Link to ="/">Logo</Link>
-            </div>
-        </header>
+    <>
+        <Header/>
         <div className="main">
             <Outlet/>
         </div>
-        <footer className="footer">
-            Coppy right by Nguyen Tien Sy
-        </footer>
-    </div>
+        <Footer/>
+    </>
   )
 }
 

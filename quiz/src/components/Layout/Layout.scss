@@ -13,6 +13,18 @@
             text-decoration: none;
         }
     }
+    &__menu, &__account {
+        a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+            padding: 10px;
+
+            &.active {
+                background-color: red;
+            }
+        }
+    }
 }
 .main {
     padding: 0 80px;

@@ -1,0 +1,48 @@
+@import "../../index.scss";
+.login {
+    width: 100%;
+    height: calc(100vh - 105px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__title {
+        margin-bottom: 20px;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    &__form {
+        width: 500px;
+        background-color:$background-light-color;
+        padding: 20px;
+        border-radius: 20px;
+
+        label {
+            font-size: 16px;
+            cursor: pointer;
+            color: $text-color;
+        }
+
+        input#password, input#email{
+            width: 100%;
+            padding: 10px;
+            outline: none;
+            border: 1px solid #dbdddb;
+            border-radius: 8px;
+            margin: 6px 0 20px;
+        }
+        input#checkbox {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .button {
+            margin-top: 20px;
+           
+        }
+  
+    }
+    
+ 
+}

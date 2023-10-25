@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {useNavigate}  from 'react-router-dom';
+import {Link, useNavigate}  from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import './Login.scss'
 import { getUser } from '../../services/userService';
@@ -52,8 +52,9 @@ const Login = () => {
                 <input type={typeCheckbox} name="password" placeholder="Password" id='password' autoComplete="off" required /> <br />
                 <input type="checkbox" name='checkbox' id='checkbox' onClick={handleCheckbox}/> 
                 <label htmlFor="checkbox" >Hiển thị mật khẩu</label>  
-                <div className='button'>
+                <div className='button' >
                     <button className='button-success'>Login</button> <br />
+                    <Link to = "/register">Hoặc đăng ký</Link>
                 </div> 
             </form>
             

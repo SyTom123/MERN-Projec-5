@@ -36,16 +36,11 @@
       "id": 5
     },
     {
-      "email": "nguyentiensy@gmail.com",
-      "password": "123456",
-      "name": "nguyen tien sy",
-      "id": 6
-    },
-    {
+      "fullName": "Nguyễn Tiến Dũng",
       "email": "tiendung@gmail.com",
       "password": "123456",
-      "name": "nguyen tien dung",
-      "id": 7
+      "token": "LviMc4kA21M3uVFH2K1O",
+      "id": 6
     }
   ],
   "topics": [
@@ -1583,5 +1578,6 @@
       "createAt": "13-06-2023 10:09:03",
       "id": 11
     }
+   
   ]
 }

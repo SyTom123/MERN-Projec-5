@@ -1,5 +1,5 @@
 @import "../../index.scss";
-.login {
+.register {
     width: 100%;
     height: calc(100vh - 105px);
     display: flex;
@@ -24,7 +24,7 @@
             color: $text-color;
         }
 
-        input#password, input#email{
+        input#password, input#email, input#name, input#rePassword{
             width: 100%;
             padding: 10px;
             outline: none;
@@ -47,7 +47,6 @@
                 color: #007BFF;
             }
         }
-
   
     }
     

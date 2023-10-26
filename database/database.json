@@ -1577,7 +1577,94 @@
       ],
       "createAt": "13-06-2023 10:09:03",
       "id": 11
+    },
+    {
+      "userId": 1,
+      "topicId": 2,
+      "answers": [
+        {
+          "questionId": 21,
+          "answer": 2
+        },
+        {
+          "questionId": 22,
+          "answer": 2
+        },
+        {
+          "questionId": 23,
+          "answer": 2
+        },
+        {
+          "questionId": 24,
+          "answer": 1
+        },
+        {
+          "questionId": 25,
+          "answer": 0
+        },
+        {
+          "questionId": 26,
+          "answer": 0
+        },
+        {
+          "questionId": 27,
+          "answer": 2
+        },
+        {
+          "questionId": 28,
+          "answer": 1
+        },
+        {
+          "questionId": 29,
+          "answer": 2
+        },
+        {
+          "questionId": 30,
+          "answer": 1
+        },
+        {
+          "questionId": 31,
+          "answer": 3
+        },
+        {
+          "questionId": 32,
+          "answer": 3
+        },
+        {
+          "questionId": 33,
+          "answer": 0
+        },
+        {
+          "questionId": 34,
+          "answer": 2
+        },
+        {
+          "questionId": 35,
+          "answer": 0
+        },
+        {
+          "questionId": 36,
+          "answer": 0
+        },
+        {
+          "questionId": 37,
+          "answer": 1
+        },
+        {
+          "questionId": 38,
+          "answer": 3
+        },
+        {
+          "questionId": 39,
+          "answer": 1
+        },
+        {
+          "questionId": 40,
+          "answer": 2
+        }
+      ],
+      "createAt": "26-10-2023 14:25:32",
+      "id": 12
     }
-   
   ]
 }

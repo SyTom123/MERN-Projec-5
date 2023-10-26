@@ -1,4 +1,5 @@
 .quiz {
+    font-size: 17px;
     &__title {
         margin-bottom: 20px;
         
@@ -7,7 +8,7 @@
         margin-bottom: 16px;
     }
     &__question-item {
-        margin: 5px 0;
+        margin: 6px 0;
         input {
             margin: 0 8px 0 15px;
             cursor: pointer;

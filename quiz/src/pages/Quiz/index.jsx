@@ -6,6 +6,7 @@ import { getTopic } from '../../services/topicsService';
 import {getCookie} from "../../helpers/cookie"
 import "./Quiz.scss";
 import { createAnswer } from '../../services/answerService';
+import getDateTime from '../../helpers/getDateTime';
 
 
 const Quiz = () => {
@@ -50,7 +51,8 @@ const Quiz = () => {
         const options = {
             userId : +getCookie("id"),
             topicId:+params.id,
-            answers: selectedAnswer
+            answers: selectedAnswer,
+            createAt: getDateTime()
         }
         
         const result = await createAnswer(options);

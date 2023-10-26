@@ -1,13 +1,13 @@
+$text-color: #25282B;
+$background-light-color: #F5F5F5;
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    color: $text-color;
 }
-$text-color: #25282B;
-$background-light-color: #F5F5F5;
-
 .button-success{
-    padding: 6px 12px;
+    padding: 4px 10px;
     color: #fff;
     border: none;
     background-color: #28A745;
@@ -17,7 +17,7 @@ $background-light-color: #F5F5F5;
     box-shadow: #28A745 0 0 0 3.2px;
 }
 .button-danger{
-    padding: 6px 12px;
+    padding: 4px 10px;
     color: #fff;
     border: none;
     background-color: #dc3545;

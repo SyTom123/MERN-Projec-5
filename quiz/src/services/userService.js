@@ -1,11 +1,8 @@
 import { getCookie } from '../helpers/cookie';
 import {get, post} from '../ultils/request'
 export const getUser = async (email= "",password ="") => {
-    let pass = "";
-    if(password != "") {
-        pass = `&password=${password}`
-    }
-    const result = await get(`users?email=${email}${pass}`);
+  
+    const result = await get(`users/login`);
     return result; 
 }
 

@@ -2,9 +2,10 @@ import { useState } from 'react';
 import {Link, useNavigate}  from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import './Login.scss'
-import { getUser } from '../../services/userService';
+// import { getUser } from '../../services/userService';
 import {setCookie} from "../../helpers/cookie";
 import {authen} from '../../components/actions/authen'
+import { loginUser } from '../../../api/user.api';
 const Login = () => {
     const dispatch = useDispatch();
     const [typeCheckbox, setTypeCheckbox] = useState("password");
@@ -13,13 +14,16 @@ const Login = () => {
         e.preventDefault();
         
         const email = e.target.elements.email.value;
-        const password = e.target.elements.password.value
-        const response = await getUser(email, password);
-        if(response.length > 0){
-            const time = 1;
-            setCookie("id", response[0].id, time);
-            setCookie("fullname", response[0].fullName, time);
-            setCookie("token", response[0].token, time);
+        const password = e.target.elements.password.value;
+        const user = {
+            email: email,
+            password
+        }
+        const response = await loginUser(user);
+
+        if(response){
+            const token = response.data.token;
+            setCookie("token",token,1);
             dispatch(authen(true));
             
             navigate("/");

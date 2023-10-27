@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { getListTopics } from "../../services/topicsService";
 import { Link } from "react-router-dom";
 import "./Topic.scss";
+import { getListTopics } from "../../../api/topic.api";
 
 const Topic = () => {
 
-    const [data, setData] = useState([]);
+    const [dataTopic, setDataTopic] = useState([]);
     useEffect(()=> {
         const fetchApi = async() => {
             const result = await getListTopics();
-            setData(result);
+            setDataTopic(result.data);
         }
         fetchApi();
     },[]);
@@ -26,11 +26,11 @@ const Topic = () => {
                     </tr>
                 </thead>  
                 <tbody>
-                    {data.length > 0 && (
+                    {dataTopic.length > 0 && (
                         <>
-                            {data.map((item) => 
-                                <tr key={item.id}>
-                                    <td>{item.id}</td>
+                            {dataTopic.map((item, index) => 
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
                                     <td>{item.name}</td>
                                     <td>
                                         <Link to = {`/quiz/${item.id}`}>

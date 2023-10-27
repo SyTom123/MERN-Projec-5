@@ -1,32 +1,35 @@
-import { useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
 import {getCookie} from '../../helpers/cookie';
-import { getUserByID } from '../../services/userService';
 import {Link} from 'react-router-dom';
 import './Home.scss'
-const Home = () => {
+import { getUserById } from '../../../api/user.api';
+import { useEffect, useState } from 'react';
+const Home =() => {
     const token = getCookie("token");
+    const id = getCookie("id");
+    const [userInfo, setUserInfo] = useState([]);
 
-    const [infoUser, setInfoUser] = useState([]);
     useEffect(()=> {
-        const getApi = async() => {
-            const result = await getUserByID();
+        const fetchApi = async () => {
+            const result = await getUserById(id);
             if(result) {
-                setInfoUser(result);
+                setUserInfo(result.data.user)
             }
         }
-        getApi();
-    },[])
+        fetchApi()
+    },[]);
+    
     return (
         <div className="home">
 
 <div className="home__content">
     {token && (
         <div className='home__title'>
-            {infoUser && (
-                <p>
-                    Xin chào bạn: <strong>{infoUser.fullName}</strong>
-                </p>
-            )}
+            <p>
+               {
+                userInfo && <>Xin chào bạn: <strong>{userInfo.fullName}</strong></>
+               } 
+            </p>
             <Link to="/topic">
               <button className="button-success" style={{ marginRight: "15px" }}>
                 Danh sách chủ đề ôn luyện

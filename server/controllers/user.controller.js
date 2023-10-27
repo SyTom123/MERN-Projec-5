@@ -25,7 +25,7 @@ module.exports.login = async(req, res) => {
         });
     } 
     catch (error) {
-    
+        res.status(400).json(error)
    }
 }
 module.exports.register = async(req, res) => {
@@ -49,4 +49,17 @@ module.exports.register = async(req, res) => {
     catch(error) {
         res.status(400).json(error)
     }
+}
+module.exports.detail = async(req, res) => {
+    const id = req.params.id;
+    const user = await User.findOne({
+        _id: id
+    }).exec();
+    res.json({
+        user: {
+            _id: user._id,
+            fullName: user.fullName,
+            email: user.email,
+        }
+    })
 }

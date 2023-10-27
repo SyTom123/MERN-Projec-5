@@ -2,10 +2,10 @@ import { useState } from 'react';
 import {Link, useNavigate}  from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import './Login.scss'
-// import { getUser } from '../../services/userService';
 import {setCookie} from "../../helpers/cookie";
 import {authen} from '../../components/actions/authen'
 import { loginUser } from '../../../api/user.api';
+
 const Login = () => {
     const dispatch = useDispatch();
     const [typeCheckbox, setTypeCheckbox] = useState("password");
@@ -21,11 +21,13 @@ const Login = () => {
         }
         try {
             const response = await loginUser(user);
+            
             if(response){
                 const token = response.data.token;
+                const id = response.data.user._id;
                 setCookie("token",token,1);
+                setCookie("id",id,1);
                 dispatch(authen(true));
-                
                 navigate("/");
             }
         } catch (error) {

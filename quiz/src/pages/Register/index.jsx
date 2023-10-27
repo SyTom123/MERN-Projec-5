@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./Register.scss";
-import { generateToken } from "../../helpers/generateToken";
-import { createUser, getUser } from "../../services/userService";
+
 import {Link, useNavigate} from 'react-router-dom';
+import { registerUser } from "../../../api/user.api";
 const Register = () => {
     const navigate = useNavigate();
     const [typeCheckbox, setTypeCheckbox] = useState("password");
@@ -44,26 +44,23 @@ const Register = () => {
             return;
         }
 
-        const token = generateToken();
-        const options = {
+        const user = {
             fullName: fullName,
             email,
             password,
-            token
         }
-        const checkExist =await getUser(email);
-        if(checkExist.length > 0) {
-            alert("Email đã tồn tại");
-        } else {
-            const result = await createUser(options);
-            if(result) {
+        try {
+            const response = await registerUser(user);
+            if(response) {
                 alert("Đăng ký thành công");
                 navigate("/login");
             }
            
+        } catch (error) {
+            alert(error.response.data.message);
         }
 
-
+       
     }
     return (
         <div className='register'>

@@ -19,22 +19,20 @@ const Login = () => {
             email: email,
             password
         }
-        const response = await loginUser(user);
-
-        if(response){
-            const token = response.data.token;
-            setCookie("token",token,1);
-            dispatch(authen(true));
-            
-            navigate("/");
-        }
-        else {
+        try {
+            const response = await loginUser(user);
+            if(response){
+                const token = response.data.token;
+                setCookie("token",token,1);
+                dispatch(authen(true));
+                
+                navigate("/");
+            }
+        } catch (error) {
             e.target.elements.email.value = "";
             e.target.elements.password.value="";
-            alert('Tài khoản hoặc mật khẩu không đúng');
-
+            alert(error.response.data.message);
         }
-
     }
     const handleCheckbox = () => {
         if(typeCheckbox == "password") {

@@ -7,7 +7,7 @@ module.exports.login = async(req, res) => {
         
         const user = await User.findOne({email: email});
         if(!user) {
-            return res.status(400).json("User không tồn tại");
+            return res.status(400).json( {message:"User không tồn tại"});
         }
 
         if (!user.authenticate(password)) {
@@ -34,7 +34,7 @@ module.exports.register = async(req, res) => {
         const existUser = await User.findOne({email}).exec();
     
         if(existUser) {
-            return res.status(400).json("User đã tồn tại");
+            return res.status(400).json({ message: "User đã tồn tại" });
         }
         const user = new User(req.body);
         await user.save()

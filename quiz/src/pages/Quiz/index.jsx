@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getListQuestion } from '../../services/questionService';
 import { getTopic } from '../../services/topicsService';
 import {getCookie} from "../../helpers/cookie"
 import "./Quiz.scss";
 import { createAnswer } from '../../services/answerService';
 import getDateTime from '../../helpers/getDateTime';
+import { getListQuestions } from '../../../api/questions.api';
 
 
 const Quiz = () => {
@@ -26,7 +26,7 @@ const Quiz = () => {
     }, []);
     useEffect(() => {
         const fetApi = async () => {
-            const result = await getListQuestion(params.id);
+            const result = await getListQuestions(params.id);
             if (result) {
                 setDataQuestions(result);
             }

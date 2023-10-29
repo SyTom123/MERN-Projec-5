@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {getCookie} from "../../helpers/cookie"
 import "./Quiz.scss";
-import { createAnswer } from '../../services/answerService';
 import getDateTime from '../../helpers/getDateTime';
 import { getTopic } from '../../../api/topic.api';
+import { createAnswer } from '../../../api/answer.api';
 
 
 const Quiz = () => {
@@ -40,7 +40,7 @@ const Quiz = () => {
         let selectedAnswer = [];
         for(let i = 0; i < e.target.elements.length; i++) {
             if(e.target.elements[i].checked) {
-                const name = +(e.target.elements[i].name);
+                const name = (e.target.elements[i].name);
                 const value = +(e.target.elements[i].value);
                 selectedAnswer.push({
                     questionId: name,
@@ -50,15 +50,16 @@ const Quiz = () => {
             
         }
         const options = {
-            userId : +getCookie("id"),
-            topicId:+params.id,
+            userId : getCookie("id"),
+            topicId: params.id,
             answers: selectedAnswer,
             createAt: getDateTime()
         }
         
         const result = await createAnswer(options);
         if(result) {
-            navigate(`/result/${result.id}`)
+            console.log(result);
+            navigate(`/result/${result.data._id}`)
         }
 
     }

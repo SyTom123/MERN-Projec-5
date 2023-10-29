@@ -1,4 +1,4 @@
-const Questions = require("../models/question.modle");
+const Questions = require("../models/question.model");
 
 module.exports.index = async (req, res) => {
 

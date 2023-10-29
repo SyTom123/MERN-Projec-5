@@ -33,7 +33,7 @@ const Topic = () => {
                                     <td>{index + 1}</td>
                                     <td>{item.name}</td>
                                     <td>
-                                        <Link to = {`/quiz/${item.id}`}>
+                                        <Link to = {`/quiz/${item._id}`}>
                                             <button className="button-success">Làm bài</button>
                                         </Link>
                                     </td>

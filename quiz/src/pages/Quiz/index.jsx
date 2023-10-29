@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getTopic } from '../../services/topicsService';
 import {getCookie} from "../../helpers/cookie"
 import "./Quiz.scss";
 import { createAnswer } from '../../services/answerService';
 import getDateTime from '../../helpers/getDateTime';
-import { getListQuestions } from '../../../api/questions.api';
+import { getTopic } from '../../../api/topic.api';
 
 
 const Quiz = () => {
@@ -19,20 +18,22 @@ const Quiz = () => {
         const fetApi = async () => {
             const result = await getTopic(params.id);
             if (result) {
-                setDataTopic(result);
+                setDataTopic(result.data);
             }
         }
         fetApi();
     }, []);
+
     useEffect(() => {
         const fetApi = async () => {
-            const result = await getListQuestions(params.id);
+            const result = await getTopic(params.id);
             if (result) {
-                setDataQuestions(result);
+                setDataQuestions(result.data.questions);
             }
         }
         fetApi();
     }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -72,16 +73,16 @@ const Quiz = () => {
                         {
                             dataQuestions.map((item, i) => (
 
-                                <div className="quiz__question" key={item.id}>
+                                <div className="quiz__question" key={item._id}>
 
                                     <p>Câu {i + 1}: {item.question}</p>
 
                                     {item.answers.map((answer, index) => (
                                         <div className="quiz__question-item" key={index}>
-                                            <input id={`quiz/${item.id}-${index}`} 
-                                                type="radio" name={item.id} value={index} />
+                                            <input id={`quiz/${item._id}-${index}`} 
+                                                type="radio" name={item._id} value={index} />
 
-                                            <label htmlFor={`quiz/${item.id}-${index}`}>
+                                            <label htmlFor={`quiz/${item._id}-${index}`}>
                                                 {answer}
                                             </label>
                                         </div>

@@ -9,3 +9,4 @@ module.exports.index = async (req, res) => {
         res.status(400).json(error)
     }
 }
+

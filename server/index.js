@@ -9,7 +9,7 @@ const route = require("./routes/index.route");
 // middle ware
 app.use(cors(
     {
-        origin: ["https://sy-tomquiz.vercel.app/"],
+        origin: ["https://sy-tomquiz.vercel.app"],
         methods:["POST","GET", "DELETE","PATCH"],
         credentials:true
     }

@@ -7,13 +7,7 @@ require("dotenv").config();
 const route = require("./routes/index.route");
 
 // middle ware
-app.use(cors(
-    {
-        origin: ["https://sy-tomquiz.vercel.app"],
-        methods:["POST","GET", "DELETE","PATCH"],
-        credentials:true
-    }
-));
+app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json());
 

@@ -18,8 +18,6 @@ const Result = () => {
             const dataQuestions = responseQuestion.data.questions;
             let result = [];
 
-            console.log(dataAnswers);
-            console.log(dataQuestions);
             for(let i = 0; i < dataQuestions.length; i++) {
                 result.push ({
                     ...dataQuestions[i],

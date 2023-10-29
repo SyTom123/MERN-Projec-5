@@ -15,7 +15,7 @@ app.use(express.json());
 route(app);
 
 // connect database
-mongoose.connect('mongodb://127.0.0.1:27017/quiz')
+mongoose.connect(process.env.MONGO_URL)
     .then(console.log("Connect database successfully"))
     .catch(err => console.log(err));
 

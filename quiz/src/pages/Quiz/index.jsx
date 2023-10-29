@@ -80,7 +80,7 @@ const Quiz = () => {
                                     {item.answers.map((answer, index) => (
                                         <div className="quiz__question-item" key={index}>
                                             <input id={`quiz/${item._id}-${index}`} 
-                                                type="radio" name={item._id} value={index} />
+                                                type="radio" name={item._id} value={index} required />
 
                                             <label htmlFor={`quiz/${item._id}-${index}`}>
                                                 {answer}

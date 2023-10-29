@@ -5,3 +5,9 @@ export const createAnswer = (options) => {
     return instance.post(url, options)
 }
 
+export const getDetail = (id) => {
+    const url = `/answers/${id}`;
+    return instance.get(url);
+}
+
+

@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import {Link, useParams} from 'react-router-dom';
-import { getAnswer } from '../../services/answerService';
-import { getListQuestion } from '../../services/questionService';
-import { getTopic } from '../../services/topicsService';
 import "./Result.scss"
+import { getDetail } from '../../../api/answer.api';
+import { getTopic } from '../../../api/topic.api';
 const Result = () => {
     const params = useParams();
     const [dataResult, setDataResult] = useState([]);
@@ -13,8 +12,10 @@ const Result = () => {
 
     useEffect(() => {
         const fetApi = async () => {
-            const dataAnswers = await getAnswer(params.id);
-            const dataQuestions = await getListQuestion(dataAnswers.topicId);
+            const responseAnswers = await getDetail(params.id);
+            const dataAnswers = responseAnswers.data;
+            const responseQuestion = await getTopic(dataAnswers.topicId);
+            const dataQuestions = responseQuestion.data.questions;
             let result = [];
 
             for(let i = 0; i < dataQuestions.length; i++) {
@@ -29,7 +30,7 @@ const Result = () => {
             if (result) {
                 setDataResult(result);
             }
-            const infoTopic = await getTopic(dataAnswers.topicId);
+            const infoTopic = (await getTopic(dataAnswers.topicId)).data.topics;
             setDataTopic(infoTopic);
 
             let countAnswerTrue = 0;
@@ -75,7 +76,7 @@ const Result = () => {
                     {
                         dataResult.map((item, i) => (
 
-                            <div className="result__question" key={item.id}>
+                            <div className="result__question" key={item._id}>
 
                                 <p>
                                     Câu {i + 1}: {item.question}
@@ -95,7 +96,7 @@ const Result = () => {
                                         className = "result__item--result";
                                     }
                                     return (
-                                        <div className="result__question-item" key={`${item.id}-${index}`}>
+                                        <div className="result__question-item" key={`${item._id}-${index}`}>
                                             <input type="radio" disabled checked={checked}/>
                                             <label className={className}>
                                                 {answer}

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import {Link, useParams} from 'react-router-dom';
 import "./Result.scss"
-import { getDetail } from '../../../api/answer.api';
+import { getDetailAnswer } from '../../../api/answer.api';
 import { getTopic } from '../../../api/topic.api';
 const Result = () => {
     const params = useParams();
@@ -12,17 +12,19 @@ const Result = () => {
 
     useEffect(() => {
         const fetApi = async () => {
-            const responseAnswers = await getDetail(params.id);
+            const responseAnswers = await getDetailAnswer(params.id);
             const dataAnswers = responseAnswers.data;
             const responseQuestion = await getTopic(dataAnswers.topicId);
             const dataQuestions = responseQuestion.data.questions;
             let result = [];
 
+            console.log(dataAnswers);
+            console.log(dataQuestions);
             for(let i = 0; i < dataQuestions.length; i++) {
                 result.push ({
                     ...dataQuestions[i],
                     ...dataAnswers.answers.find(item => 
-                        item.questionId === dataQuestions[i].id
+                        item.questionId === dataQuestions[i]._id
                     )
                 })
             }
@@ -47,7 +49,7 @@ const Result = () => {
         }
         fetApi();
     }, []);
-
+    console.log
   return (
     <div className='result'>
         {dataTopic && <h3 className="result__title">Kết quả chủ đề: {dataTopic.name}</h3>}
@@ -112,7 +114,7 @@ const Result = () => {
             </>
         )}
         {dataTopic && (
-            <Link to = {"/quiz/" + dataTopic.id} >
+            <Link to = {"/quiz/" + dataTopic._id} >
                 <button className='button-success'>Làm lại</button>
             </Link>
         )}

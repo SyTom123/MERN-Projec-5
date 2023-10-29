@@ -1,4 +1,5 @@
 const User = require('../models/user.model');
+const Answers = require('../models/answer.model');
 const jwt = require('jsonwebtoken');
 
 module.exports.login = async(req, res) => {
@@ -55,11 +56,15 @@ module.exports.detail = async(req, res) => {
     const user = await User.findOne({
         _id: id
     }).exec();
+    const answers = await Answers.find({
+        userId: id
+    })
     res.json({
         user: {
             _id: user._id,
             fullName: user.fullName,
             email: user.email,
-        }
+        },
+        answers: answers
     })
 }

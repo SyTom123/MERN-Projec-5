@@ -2,7 +2,7 @@
 import {getCookie} from '../../helpers/cookie';
 import {Link} from 'react-router-dom';
 import './Home.scss'
-import { getUserById } from '../../../api/user.api';
+import { getDetailUser } from '../../../api/user.api';
 import { useEffect, useState } from 'react';
 const Home =() => {
     const token = getCookie("token");
@@ -11,7 +11,7 @@ const Home =() => {
 
     useEffect(()=> {
         const fetchApi = async () => {
-            const result = await getUserById(id);
+            const result = await getDetailUser(id);
             if(result) {
                 setUserInfo(result.data.user)
             }

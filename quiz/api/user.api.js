@@ -8,7 +8,8 @@ export const registerUser = (user) => {
     const url = '/users/register';
     return instance.post(url,user)
 }
-export const getUserById = (id) => {
+export const getDetailUser = (id) => {
     const url = `/users/${id}`;
     return instance.get(url,id)
 }
+

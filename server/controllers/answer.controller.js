@@ -15,3 +15,10 @@ module.exports.createPost = async(req, res) => {
     await answer.save();
     res.json(answer)
 }
+//[DELETE]/delete/:id
+module.exports.delete = async(req, res) => {
+    
+    const id = req.params.id;
+    const answer = await Answers.deleteOne({_id:id});
+    res.json(answer);
+}

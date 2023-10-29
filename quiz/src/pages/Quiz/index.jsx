@@ -58,7 +58,6 @@ const Quiz = () => {
         
         const result = await createAnswer(options);
         if(result) {
-            console.log(result);
             navigate(`/result/${result.data._id}`)
         }
 

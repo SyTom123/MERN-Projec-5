@@ -1,23 +1,27 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { deleteAnswer, getAnswerById } from "../../services/answerService";
-import { getListTopics } from "../../services/topicsService";
 import { Link } from "react-router-dom";
 import './Answer.scss';
+import {  deleteAnswer } from "../../../api/answer.api";
+import { getListTopics } from "../../../api/topic.api";
+import { getDetailUser } from "../../../api/user.api";
+import { getCookie } from "../../helpers/cookie";
 
 const Answer = () => {
     const [dataAnswers, setDataAnswers] = useState([]);
-
+    const id = getCookie("id");
     useEffect(() => {
         const fetchApi = async () => {
-            const response = await getAnswerById();
-            const topics = await getListTopics();
-
+            const responseUser = await getDetailUser(id);
+            const responseAnswer = responseUser.data.answers;
+            const responseTopics = await getListTopics();
+            const topics = responseTopics.data;
             let result = [];
-            for (let i = 0; i < response.length; i++) {
+            for (let i = 0; i < responseAnswer.length; i++) {
                 result.push({
-                    ...response[i],
-                    ...topics.find(item => item.id === response[i].topicId),
-                    id: response[i].id
+                    ...responseAnswer[i],
+                    ...topics.find(item => item._id === responseAnswer[i].topicId),
+                    id: responseAnswer[i]._id
                 })
             }
             if (result) {
@@ -52,13 +56,13 @@ const Answer = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {dataAnswers.length > 0 && (
+                        {dataAnswers.length > 0 ? (
                             <>
                                 {dataAnswers.map((item, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
                                         <td>{item.name}</td>
-                                        <td>{item.createAt}</td>
+                                        <td>{new Date(item.createdAt).toLocaleDateString("vi")}</td>
                                         <td>
                                             <Link to={`/result/${item.id}`}>
                                                 <button className="button-success">
@@ -78,7 +82,8 @@ const Answer = () => {
                                     </tr>
                                 ))}
                             </>
-                        )}
+                        ):(<tr >
+                            <td colSpan ="4" className="text-center">Danh sách trống</td></tr>) }
                     </tbody>
                 </table>
             </div>

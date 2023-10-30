@@ -15,7 +15,7 @@ module.exports.login = async(req, res) => {
             return res.status(400).json({ message: "Mật khẩu không đúng" });
         }
 
-        const token = jwt.sign({ _id: user._id }, "123456", { expiresIn: 3600 });
+        const token = jwt.sign({ _id: user._id }, "123456", { expiresIn: 6000 }); //6000ms = 10 minutes
         res.json({
             token,
             user: {
@@ -67,4 +67,19 @@ module.exports.detail = async(req, res) => {
         },
         answers: answers
     })
+}
+module.exports.userById = async function(req, res,next, id) {
+    try {
+        const user = await User.findOne({
+            _id: id
+        })
+        if(!user){
+            return res.status(400).json({message: "User không tồn tại"})
+        }
+        req.profile= user;
+        req.profile.password = undefined;
+        next()
+    } catch (error) {
+        console.log(error)
+    }
 }

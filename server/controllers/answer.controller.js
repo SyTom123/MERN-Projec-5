@@ -1,4 +1,5 @@
 const Answers = require("../models/answer.model");
+const { userById } = require("./user.controller");
 module.exports.index = async(req, res) => {
     const answers = await Answers.find({}).exec();
     res.json(answers);

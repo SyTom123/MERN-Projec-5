@@ -1,8 +1,12 @@
 import instance from "./instance";
-
-export const createAnswer = (options) => {
-    const url = '/answers';
-    return instance.post(url, options)
+import { getCookie } from "../src/helpers/cookie";
+const token = getCookie("token") || "";
+const config = {
+    headers: { Authorization: `Bearer ${token}` }
+};
+export const createAnswer = (options, id) => {
+    const url = `/answers/${id}`;
+    return instance.post(url, options,config)
 }
 
 export const getDetailAnswer = (id) => {

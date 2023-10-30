@@ -49,14 +49,15 @@ const Quiz = () => {
             }
             
         }
+        const id = getCookie("id")
         const options = {
-            userId : getCookie("id"),
+            userId :id ,
             topicId: params.id,
             answers: selectedAnswer,
             createAt: getDateTime()
         }
         
-        const result = await createAnswer(options);
+        const result = await createAnswer(options,id);
         if(result) {
             navigate(`/result/${result.data._id}`)
         }

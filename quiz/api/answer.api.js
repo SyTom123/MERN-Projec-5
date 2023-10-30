@@ -6,7 +6,7 @@ const config = {
 };
 export const createAnswer = (options, id) => {
     const url = `/answers/${id}`;
-    return instance.post(url, options,config)
+    return instance.post(url, options, config)
 }
 
 export const getDetailAnswer = (id) => {

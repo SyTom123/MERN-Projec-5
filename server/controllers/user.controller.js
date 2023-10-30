@@ -61,7 +61,7 @@ module.exports.detail = async(req, res) => {
     })
     res.json({
         user: {
-            _id: user._id,
+            _id: user._id ,
             fullName: user.fullName,
             email: user.email,
         },
@@ -78,7 +78,7 @@ module.exports.userById = async function(req, res,next, id) {
         }
         req.profile= user;
         req.profile.password = undefined;
-        next()
+        next();
     } catch (error) {
         console.log(error)
     }

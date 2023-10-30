@@ -49,18 +49,30 @@ const Quiz = () => {
             }
             
         }
-        const id = getCookie("id")
+        const id = getCookie("id");
         const options = {
             userId :id ,
             topicId: params.id,
             answers: selectedAnswer,
             createAt: getDateTime()
         }
-        
-        const result = await createAnswer(options,id);
-        if(result) {
-            navigate(`/result/${result.data._id}`)
+
+        try {
+            const result = await createAnswer(options,id);
+            if(result) {
+                navigate(`/result/${result.data._id}`)
         }
+        } catch (error) {
+            if(error.response.data.message) {
+                alert(error.response.data.message );
+            }
+            else {
+                alert('Lỗi chưa đăng nhập');
+            }
+           
+        }
+        
+
 
     }
     return (
